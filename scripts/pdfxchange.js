@@ -170,8 +170,10 @@ function cleanStream(pageBuffer, xobjectName) {
   } while (found1);
 }
 
+var scriptname = 'pdfxchange.js'
+
 if (scriptArgs.length < 2) {
-  die('Not enough arguments\nUsage:\n\tmutool run pdfxch-wm-cleaner.js <input.pdf> <output.pdf>');
+  die('Not enough arguments\nUsage:\n\tmutool run ' + scriptname + ' <input.pdf> <output.pdf>');
 }
 
 function cleanPage(page) {
