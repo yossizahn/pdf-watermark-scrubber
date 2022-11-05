@@ -51,4 +51,4 @@ g_pdf = Document(sys.argv[1])
 for g_page in g_pdf.pages():
     clean_page()
 
-g_pdf.save(sys.argv[2], clean=True, ascii=True)
+g_pdf.save(sys.argv[2], clean=True, deflate=True)
