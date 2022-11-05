@@ -170,18 +170,18 @@ function cleanStream(pageBuffer, xobjectName) {
   } while (found1);
 }
 
-var scriptname = 'pdfxchange.js'
-
-if (scriptArgs.length < 2) {
-  die('Not enough arguments\nUsage:\n\tmutool run ' + scriptname + ' <input.pdf> <output.pdf>');
-}
-
 function cleanPage(page) {
   processPageAnnotations(page);
   var xobjectNames = processPageXObjects(page);
   if (xobjectNames && xobjectNames.length) {
     processPageContentStream(page, xobjectNames);
   }
+}
+
+var scriptname = 'pdfxchange.js'
+
+if (scriptArgs.length < 2) {
+  die('Not enough arguments\nUsage:\n\tmutool run ' + scriptname + ' <input.pdf> <output.pdf>');
 }
 
 var pdf = new PDFDocument(scriptArgs[0]);
