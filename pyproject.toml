@@ -1,0 +1,54 @@
+[tool.poetry]
+name = "pdf-watermark-scrubber"
+version = "0.1.0"
+description = "A tool to remove watermarks from PDF files"
+authors = ["Yossi Zahn <yossizahn@gmail.com>"]
+readme = "README.md"
+packages = [{include = "pdf_watermark_scrubber"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+PyMuPDF = "^1.21.0"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^0.991"
+pre-commit = "^2.20.0"
+flake8 = "^6.0.0"
+pytest-cov = "^4.0.0"
+isort = "^5.10.1"
+black = "^22.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 79
+
+[tool.black]
+line-length = 79
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
