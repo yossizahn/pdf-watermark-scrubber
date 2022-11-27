@@ -35,7 +35,7 @@ def clean_xobjects(xobjects):
 
 
 def clean_page():
-    g_page.clean_contents() # concatenates the content streams
+    g_page.clean_contents()  # concatenates the content streams
     clean_annotations()
     xobjects = get_xobjects()
     clean_xobjects(xobjects)
