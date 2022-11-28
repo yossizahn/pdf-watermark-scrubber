@@ -27,13 +27,16 @@ def get_xobjects(pdf: Document, page: Page) -> list[str]:
 
 def clean_xobjects(pdf: Document, page: Page, xobjects: list[str]) -> None:
     def delete_xobject(xobject_name: str) -> None:
+        do_str = f"/{xobject_name} Do".encode()
+        begin = b"q\n"
+        end = b"\nQ"
         stream: bytes = page.read_contents()
-        while (loc := stream.find(f"/{xobject_name} Do".encode())) != -1:
-            if (loc_start := stream.rfind(b"q\n", 0, loc)) == -1:
+        while (loc := stream.find(do_str)) != -1:
+            if (loc_start := stream.rfind(begin, 0, loc)) == -1:
                 return
-            if (loc_end := stream.find(b"\nQ", loc)) == -1:
+            if (loc_end := stream.find(end, loc)) == -1:
                 return
-            stream = stream[:loc_start] + stream[loc_end + 3 :]
+            stream = stream[:loc_start] + stream[loc_end + len(end) :]
 
         pdf.update_stream(page.get_contents()[0], stream)
 
